@@ -33,6 +33,7 @@ function menu(){
 }
 
 // add intern function
+
 // add manager function
 // build team function
 // functions will have their own inquirer prompts 
