@@ -26,17 +26,114 @@ function menu(){
             case "Add engineer":
             addEngineer();
             break;
-            // add intern
-            // build team
+            case "Add intern":
+                addIntern();
+                break;
+            case "Build team":
+                buildTeam();
+                break;
         }
     })
 }
 
-// add intern function
+// add manager
+    function addManager(){
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "name", 
+                message: "Enter manager's first and last name",
+            },
+            {
+                type: "input",
+                name: "id", 
+                message: "Enter manager's id number", 
+            },
+            {
+                type: "input",
+                name: "email", 
+                message: "Enter manager's email address",
+            },
+            {
+                type: "input",
+                name: "officeNumber", 
+                message: "Enter manager's office number",
+            }
+        ]).then (function (answer){
+            let manager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber);
+            teamMembers.push(manager);
+            menu();
+        })
+    }
 
-// add manager function
+// add engineer
+function addEngineer(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name", 
+            message: "Enter engineer's first and last name",
+        },
+        {
+            type: "input",
+            name: "id", 
+            message: "Enter engineer's id number", 
+        },
+        {
+            type: "input",
+            name: "email", 
+            message: "Enter engineer's email address",
+        },
+        {
+            type: "input",
+            name: "officeNumber", 
+            message: "Enter manager's Github handle",
+        }
+    ]).then (function (answer){
+        let engineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
+        teamMembers.push(engineer);
+        menu();
+    })
+}
+
+// add intern function
+function addIntern(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name", 
+            message: "Enter intern's first and last name",
+        },
+        {
+            type: "input",
+            name: "id", 
+            message: "Enter intern's id number", 
+        },
+        {
+            type: "input",
+            name: "email", 
+            message: "Enter intern's email address",
+        },
+        {
+            type: "input",
+            name: "officeNumber", 
+            message: "Enter intern's school",
+        }
+    ]).then (function (answer){
+        let intern = new Intern(answer.name, answer.id, answer.email, answer.school);
+        teamMembers.push(intern);
+        menu();
+    })
+}
+
 // build team function
-// functions will have their own inquirer prompts 
+
+function buildTeam(){
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFileSync(outputPath, render(teamMembers))
+}
 
 // callback for menu (node knows this will be first thing it does)
 menu();
