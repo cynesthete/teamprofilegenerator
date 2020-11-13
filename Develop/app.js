@@ -86,11 +86,11 @@ function addEngineer(){
         },
         {
             type: "input",
-            name: "officeNumber", 
-            message: "Enter manager's Github handle",
+            name: "github", 
+            message: "Enter engineer's Github handle",
         }
     ]).then (function (answer){
-        let engineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
+        let manager = new Engineer(answer.name, answer.id, answer.email, answer.github);
         teamMembers.push(engineer);
         menu();
     })
@@ -116,7 +116,7 @@ function addIntern(){
         },
         {
             type: "input",
-            name: "officeNumber", 
+            name: "school", 
             message: "Enter intern's school",
         }
     ]).then (function (answer){
